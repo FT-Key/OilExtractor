@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta description="pipes - project">
+  <link rel="stylesheet" href="style.css">
+  <title>Oil Extractor</title>
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <canvas id="paisaje"></canvas>
+    <div id="configuracion"
+      style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 8px; font-family: sans-serif;">
+      <div id="info" style="margin-bottom: 8px;">Profundidad: 0 mts</div>
+
+      <label>Profundidad máxima (mts):
+        <input type="number" id="inputProfMax" value="-100" min="-500000" max="0" step="100" style="width: 60px;">
+      </label>
+      <br>
+      <label>Movimiento lateral (px):
+        <input type="number" id="inputMovLateral" value="20" min="10" step="10" style="width: 60px;">
+      </label>
+      <br>
+      <label>Movimiento vertical (mts):
+        <input type="number" id="inputMovVertical" value="10" min="10" step="10" style="width: 60px;">
+      </label>
+    </div>
+    <!-- Botones para controlar la tubería -->
+    <div id="controls">
+      <button id="up">↑</button>
+      <button id="down">↓</button>
+      <button id="left">←</button>
+      <button id="right">→</button>
+      <button id="direction">⮂</button>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="./script.js"></script>
+</body>
+
+</html>
