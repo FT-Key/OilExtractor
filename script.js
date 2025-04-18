@@ -257,6 +257,47 @@ document.getElementById('inputMovVertical').addEventListener('input', (e) => {
   movimientoVertical = parseFloat(e.target.value);
 });
 
+document.addEventListener('keydown', function (event) {
+  switch (true) {
+    case event.key === 'ArrowDown':
+      // Acción que corresponde al botón "↓"
+      profundidadReal = Math.max(profundidadMaxima, profundidadReal - movimientoVertical); // no baja más que profundidadMaxima
+      dibujarPaisaje();
+      break;
+
+    case event.key === 'ArrowUp':
+      // Acción que corresponde al botón "↑"
+      profundidadReal = Math.min(0, profundidadReal + movimientoVertical); // no sube más de 0
+      dibujarPaisaje();
+      break;
+
+    case event.key === 'ArrowLeft':
+      // Acción que corresponde al botón "←"
+      if (direccionTuberia === 'derecha') {
+        largoTuberia -= movimientoLateral; // Reducir longitud lateral
+      } else {
+        largoTuberia += movimientoLateral; // Reducir longitud hacia la izquierda
+      }
+      largoTuberia = Math.max(20, largoTuberia); // Evitar que la longitud sea negativa
+      dibujarPaisaje();
+      break;
+
+    case event.key === 'ArrowRight':
+      // Acción que corresponde al botón "→"
+      if (direccionTuberia === 'derecha') {
+        largoTuberia += movimientoLateral; // Aumentar longitud lateral
+      } else {
+        largoTuberia -= movimientoLateral; // Aumentar longitud hacia la izquierda
+      }
+      largoTuberia = Math.max(20, largoTuberia); // Evitar que la longitud sea negativa
+      dibujarPaisaje();
+      break;
+
+    default:
+      break;
+  }
+});
+
 // Redibujar al cambiar el tamaño de la ventana
 window.addEventListener('resize', dibujarPaisaje);
 
