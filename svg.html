@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>SVG dinámico</title>
@@ -14,6 +15,7 @@
     }
   </style>
 </head>
+
 <body>
   <label>Ancho:</label>
   <input type="range" id="ancho" min="300" max="800" value="300" step="50">
@@ -21,43 +23,53 @@
   <input type="range" id="alto" min="200" max="800" value="200" step="50">
   <br><br>
 
-  <div id="contenedor" style="width: 200px; height: 200px;">
-    <svg id="svg" viewBox="0 0 200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path id="path" 
-            d="M50 0 V100 Q50 160 100 160 H300" 
-            stroke="black" 
-            stroke-width="2" 
-            fill="none"/>
+  <div id="contenedor" style="width: 300px; height: 200px;">
+    <svg id="svg" viewBox="0 0 300 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="path" d="M50 0 V100 Q50 160 100 160 H400" stroke="black" stroke-width="2" fill="none" />
     </svg>
   </div>
 
   <script>
-    const ancho = document.getElementById('ancho');
-    const alto = document.getElementById('alto');
+    const anchoInput = document.getElementById('ancho');
+    const altoInput = document.getElementById('alto');
     const contenedor = document.getElementById('contenedor');
     const svg = document.getElementById('svg');
     const path = document.getElementById('path');
 
+    // Valores base de referencia
+    const baseWidth = 300;
+    const baseHeight = 200;
+    const baseH = 400;
+
     function actualizarTamano() {
-      const newWidth = ancho.value;
-      const newHeight = alto.value;
+      const newWidth = parseInt(anchoInput.value);
+      const newHeight = parseInt(altoInput.value);
+
+      // Cambiar tamaño del contenedor
       contenedor.style.width = newWidth + 'px';
       contenedor.style.height = newHeight + 'px';
 
-      // Actualizamos el viewBox para que el contenido se escale adecuadamente
+      // Actualizar el viewBox para que escale correctamente
       svg.setAttribute('viewBox', `0 0 ${newWidth} ${newHeight}`);
 
-      // Escalamos las coordenadas del path solo en el eje horizontal (X)
-      const scaleX = newWidth / 200;
-      const scaleY = newHeight / 200;
+      // Mantener proporcion del path en Y
+      const offsetY = newHeight - baseHeight;
 
-      // Ajustamos las coordenadas del path para que solo se modifique la parte horizontal
-      const newPath = `M50 0 V${100 * scaleY} Q50 ${160 * scaleY} ${100 * scaleY} ${160 * scaleY} H${150 * scaleX}`;
+      // Escalar H proporcional al ancho
+      const step = parseInt(anchoInput.step);
+      const hFinal = Math.round((newWidth / baseWidth) * baseH / step) * step;
+
+      const newPath = `M50 0 V${100 + offsetY} Q50 ${160 + offsetY} 100 ${160 + offsetY} H${hFinal}`;
+      console.log(newPath);
       path.setAttribute('d', newPath);
     }
 
-    ancho.addEventListener('input', actualizarTamano);
-    alto.addEventListener('input', actualizarTamano);
+    anchoInput.addEventListener('input', actualizarTamano);
+    altoInput.addEventListener('input', actualizarTamano);
+
+    // Inicializar con los valores por defecto
+    actualizarTamano();
   </script>
 </body>
+
 </html>
