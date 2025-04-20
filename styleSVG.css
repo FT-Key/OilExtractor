@@ -1,0 +1,80 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  position: relative;
+}
+
+main,
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#contenedor {
+  display: inline-block;
+  position: absolute;
+  top: 20%;  /* un poco más abajo para no tapar los controles */
+  left: 20%;
+}
+
+#svg {
+  width: 100%;
+  height: 100%;
+}
+
+#controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left mid right"
+    ". down .";
+  gap: 5px;
+}
+
+#up {
+  grid-area: up;
+}
+
+#down {
+  grid-area: down;
+}
+
+#left {
+  grid-area: left;
+}
+
+#right {
+  grid-area: right;
+}
+
+#direction {
+  grid-area: mid;
+}
+
+#controls button {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#controls button:hover {
+  background-color: #ddd;
+}
