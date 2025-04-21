@@ -22,8 +22,8 @@ canvas {
 #contenedor {
   display: inline-block;
   position: absolute;
-  top: 20%;  /* un poco más abajo para no tapar los controles */
-  left: 20%;
+  top: 15%;  /* un poco más abajo para no tapar los controles */
+  left: 40%;
 }
 
 #svg {
@@ -77,4 +77,21 @@ canvas {
 
 #controls button:hover {
   background-color: #ddd;
+}
+
+/* Estilos para el input de stroke */
+#strokeControl {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#strokeControl input {
+  width: 60px;
+  margin-left: 5px;
 }

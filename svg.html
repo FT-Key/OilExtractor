@@ -9,23 +9,6 @@
 
 <body>
 
-  <div id="configuracion"
-    style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 8px; font-family: sans-serif;">
-    <div id="info" style="margin-bottom: 8px;">Profundidad: 0 mts</div>
-
-    <label>Profundidad máxima (mts):
-      <input type="number" id="inputProfMax" value="-100" min="-500000" max="0" step="100" style="width: 60px;">
-    </label>
-    <br>
-    <label>Movimiento lateral (px):
-      <input type="number" id="inputMovLateral" value="20" min="10" step="10" style="width: 60px;">
-    </label>
-    <br>
-    <label>Movimiento vertical (mts):
-      <input type="number" id="inputMovVertical" value="10" min="10" step="10" style="width: 60px;">
-    </label>
-  </div>
-
   <div id="controls">
     <button id="up">↑</button>
     <button id="down">↓</button>
@@ -34,9 +17,15 @@
     <button id="direction">⮂</button>
   </div>
 
+  <div id="strokeControl">
+    <label for="strokeInput">Stroke:</label>
+    <input id="strokeInput" type="number" value="10" min="1" />
+  </div>
+
   <div id="contenedor" style="width: 300px; height: 200px;">
     <svg id="svg" viewBox="0 0 300 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path id="path" d="M2 0 V100 Q2 199 100 199 H400" stroke="black" stroke-width="2" fill="none" />
+      <path id="path" d="M5 0 V100 Q5 195 100 195 H400" stroke="black" stroke-width="10" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision" />
     </svg>
   </div>
 

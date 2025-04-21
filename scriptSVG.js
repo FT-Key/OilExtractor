@@ -8,6 +8,9 @@ const downBtn = document.getElementById('down');
 const leftBtn = document.getElementById('left');
 const rightBtn = document.getElementById('right');
 
+//Inputs
+const strokeInput = document.getElementById('strokeInput');
+
 // Valores base
 const baseWidth = 300;
 const baseHeight = 200;
@@ -27,10 +30,13 @@ function actualizarTamano() {
 
   svg.setAttribute('viewBox', `0 0 ${currentWidth} ${currentHeight}`);
 
-  // Aplicar espejo si está activado
-  const stroke = path.getAttribute("stroke-width");
-  const offsetVisual = stroke; // Vale lo mismo que la variable Stroke, pero se declara para que pueda ser mas escalable y entendible
+  // Obtener el valor de stroke-width y calcular el offset visual
+  const stroke = parseFloat(path.getAttribute("stroke-width")) || 0;
+  const offsetVisual = stroke / 2; // Mitad del stroke para no cortar la línea
 
+  console.log("Stroke y offset: ", stroke, offsetVisual);
+
+  // Aplicar espejo si está activado
   if (espejado) {
     svg.style.transform = 'scaleX(-1)';
     svg.style.transformOrigin = 'left';
@@ -40,10 +46,18 @@ function actualizarTamano() {
     svg.style.marginLeft = '0px';
   }
 
-  const offsetY = currentHeight - baseHeight;
+  // Línea curva inferior a 2px del borde
+  const yFinal = currentHeight - offsetVisual;
+  const yCurva = yFinal; // La curva queda al borde inferior del SVG
+
+  // Calcular la longitud final de la línea horizontal (hFinal) en función del tamaño actual
   const hFinal = Math.round((currentWidth / baseWidth) * baseH / step) * step;
 
-  const newPath = `M2 0 V${100 + offsetY} Q2 ${199 + offsetY} 100 ${199 + offsetY} H${hFinal}`;
+  // Modificar el path con el valor de offsetVisual para asegurar que el trazo no se corte
+  const newPath = `M${offsetVisual} 0 V${yFinal + offsetVisual - 100} Q${offsetVisual} ${yCurva} 100 ${yCurva} H${hFinal}`;
+  console.log(newPath)
+
+  // Actualizar el atributo 'd' del path con el nuevo valor
   path.setAttribute('d', newPath);
 }
 
@@ -90,6 +104,13 @@ leftBtn.addEventListener('click', () => {
 
 directionBtn.addEventListener('click', () => {
   espejado = !espejado;
+  actualizarTamano();
+});
+
+// Actualizar el stroke-width al cambiar el input
+strokeInput.addEventListener('input', (event) => {
+  const newStroke = isNaN(parseInt(event.target.value, 10)) ? 10 : parseInt(event.target.value, 10);
+  path.setAttribute("stroke-width", newStroke);
   actualizarTamano();
 });
 
