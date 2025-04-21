@@ -12,7 +12,7 @@ const rightBtn = document.getElementById('right');
 const strokeInput = document.getElementById('strokeInput');
 
 // Valores base
-const baseWidth = 300;
+const baseWidth = 150;
 const baseHeight = 200;
 const baseH = 400;
 const step = 50;
@@ -34,8 +34,6 @@ function actualizarTamano() {
   const stroke = parseFloat(path.getAttribute("stroke-width")) || 0;
   const offsetVisual = stroke / 2; // Mitad del stroke para no cortar la línea
 
-  console.log("Stroke y offset: ", stroke, offsetVisual);
-
   // Aplicar espejo si está activado
   if (espejado) {
     svg.style.transform = 'scaleX(-1)';
@@ -55,7 +53,6 @@ function actualizarTamano() {
 
   // Modificar el path con el valor de offsetVisual para asegurar que el trazo no se corte
   const newPath = `M${offsetVisual} 0 V${yFinal + offsetVisual - 100} Q${offsetVisual} ${yCurva} 100 ${yCurva} H${hFinal}`;
-  console.log(newPath)
 
   // Actualizar el atributo 'd' del path con el nuevo valor
   path.setAttribute('d', newPath);
