@@ -24,6 +24,29 @@ let espejado = false; // por defecto, no espejado
 
 const directionBtn = document.getElementById('direction');
 
+const percentageInput = document.getElementById('percentageInput');
+
+function actualizarStrokeDash() {
+  const totalLength = path.getTotalLength();
+  const percentage = parseInt(percentageInput.value, 10) || 0;
+  const visibleLength = (percentage / 100) * totalLength;
+
+  path.style.strokeDasharray = totalLength;
+  path.style.strokeDashoffset = totalLength - visibleLength;
+}
+
+// Evento para actualizar el porcentaje
+percentageInput.addEventListener('input', () => {
+  actualizarStrokeDash();
+});
+
+// También llamalo al final de actualizarTamano()
+function actualizarTamano() {
+  // ... todo tu código actual ...
+  path.setAttribute('d', newPath);
+  actualizarStrokeDash(); // <- Llama aquí para mantener sincronización
+}
+
 function actualizarTamano() {
   contenedor.style.width = currentWidth + 'px';
   contenedor.style.height = currentHeight + 'px';
