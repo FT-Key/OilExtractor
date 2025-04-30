@@ -6,8 +6,6 @@ body {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: sans-serif;
   position: relative;
 }
@@ -22,7 +20,8 @@ canvas {
 #contenedor {
   display: inline-block;
   position: absolute;
-  top: 15%;  /* un poco más abajo para no tapar los controles */
+  top: 15%;
+  /* un poco más abajo para no tapar los controles */
   left: 40%;
 }
 
@@ -75,6 +74,11 @@ canvas {
   border-radius: 5px;
 }
 
+#percentageInput {
+  width: 300px;
+  margin: 0;
+}
+
 #controls button:hover {
   background-color: #ddd;
 }
@@ -85,13 +89,21 @@ canvas {
   top: 10px;
   left: 10px;
   display: flex;
-  align-items: center;
+  align-items: start;
+  flex-direction: column;
   background-color: #eee;
   padding: 5px;
   border-radius: 5px;
-}
 
-#strokeControl input {
-  width: 60px;
-  margin-left: 5px;
+  input {
+    margin-left: 5px;
+  }
+
+  input[type="range"] {
+    width: 100px;
+  }
+
+  input[type="number"] {
+    width: 60px;
+  }
 }
