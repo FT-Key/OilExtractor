@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SVG dinámico</title>
+  <link rel="stylesheet" href="styleSVGGSAP.css">
+</head>
+
+<body>
+
+  <div id="controls">
+    <button id="up">↑</button>
+    <button id="down">↓</button>
+    <button id="left">←</button>
+    <button id="right">→</button>
+    <button id="direction">⮂</button>
+  </div>
+
+  <div id="strokeControl">
+
+    <div>
+      <label for="strokeInput">Stroke:</label>
+      <input id="strokeInput" type="number" value="10" min="1" />
+    </div>
+
+    <div id="percentageControl">
+      <label for="percentageInput">Porcentaje visible:</label>
+      <input id="percentageInput" type="range" value="100" min="0" max="100" />
+    </div>
+
+    <div id="animationControl">
+      <label for="easeSelect">Ease:</label>
+      <select id="easeSelect">
+        <option value="linear">linear</option>
+        <option value="power1.out" selected>power1.out</option>
+        <option value="power1.inOut">power1.inOut</option>
+        <option value="power2.out">power2.out</option>
+        <option value="back.out">back.out</option>
+        <option value="elastic.out">elastic.out</option>
+        <option value="bounce.out">bounce.out</option>
+        <option value="expo.inOut">expo.inOut</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div id="contenedor" style="width: 300px; height: 200px;">
+    <svg id="svg" viewBox="0 0 300 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="path" d="M5 0 V100 Q5 195 100 195 H300" stroke="black" stroke-width="5" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision" />
+    </svg>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://assets.codepen.io/16327/DrawSVGPlugin3.min.js"></script>
+  <script src="./scriptSVGGSAP.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  position: relative;
+}
+
+main,
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#contenedor {
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+  /* un poco más abajo para no tapar los controles */
+  left: 40%;
+}
+
+#svg {
+  width: 100%;
+  height: 100%;
+}
+
+#controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left mid right"
+    ". down .";
+  gap: 5px;
+}
+
+#up {
+  grid-area: up;
+}
+
+#down {
+  grid-area: down;
+}
+
+#left {
+  grid-area: left;
+}
+
+#right {
+  grid-area: right;
+}
+
+#direction {
+  grid-area: mid;
+}
+
+#controls button {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#percentageInput {
+  width: 300px;
+  margin: 0;
+}
+
+#controls button:hover {
+  background-color: #ddd;
+}
+
+/* Estilos para el input de stroke */
+#strokeControl {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 5px;
+
+  input {
+    margin-left: 5px;
+  }
+
+  input[type="range"] {
+    width: 100px;
+  }
+
+  input[type="number"] {
+    width: 60px;
+  }
+}
